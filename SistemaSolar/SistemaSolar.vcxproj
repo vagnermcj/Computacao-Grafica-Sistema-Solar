@@ -70,8 +70,21 @@
     <ClInclude Include="triangle.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="images\.DS_Store" />
     <None Include="shaders\2d\fragment.glsl" />
     <None Include="shaders\2d\vertex.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="images\earth-normal.png" />
+    <Image Include="images\earth.jpg" />
+    <Image Include="images\Lebron.jpg" />
+    <Image Include="images\lena_color_512.tif" />
+    <Image Include="images\noise.png" />
+    <Image Include="images\paper.jpg" />
+    <Image Include="images\skybox.jpg" />
+    <Image Include="images\skytest.png" />
+    <Image Include="images\smile_face.jpg" />
+    <Image Include="images\stopwatch.jpg" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

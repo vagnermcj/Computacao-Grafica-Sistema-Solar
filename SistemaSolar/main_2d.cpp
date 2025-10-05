@@ -16,6 +16,7 @@
 #include "shader.h"
 #include "triangle.h"
 #include "disk.h"
+#include "texture.h"
 
 #include <iostream>
 
@@ -62,39 +63,40 @@ static void initialize (void)
   // enable depth test 
   glEnable(GL_DEPTH_TEST);
 
-  // create objects
-  camera = Camera2D::Make(0,10,0,10);
-
-  //Moon setup
-  auto moonTrf = Transform::Make();
-  moonTrf->Scale(0.2f, 0.2f, 1.0f);
-  auto moon = Node::Make(moonTrf, { Color::Make(0.8f,0.8f,0.8f) },{ Disk::Make()}); //General and Sprite Node
-
-  //Earth Setup
-  auto earthSpriteTrf = Transform::Make();
-  auto earthOrbitTrf = Transform::Make();
-  earthSpriteTrf->Scale(0.5f, 0.5f, 1.0f);
-
-  auto earthSprite = Node::Make(earthSpriteTrf, { Color::Make(0,0,1) }, { Disk::Make() }); //Earth Sprite Node
-  auto earthOrbit = Node::Make(earthOrbitTrf, { moon });
-  auto earth = Node::Make({earthSprite, earthOrbit}); //General Earth Node
-  
-  //Sun Setup
-  auto sunTrf = Transform::Make();
-  auto sunOrbitTrf = Transform::Make();
-  sunTrf->Translate(5.0f,5.0f,1.0f);
-
-  auto sunSprite = Node::Make({ Color::Make(1.0f,1.0f,0.1f) }, { Disk::Make() }); //Sprite Node
-  auto sunOrbit = Node::Make(sunOrbitTrf, {earth}); //Orbit Node
-
-  auto sun = Node::Make(sunTrf, {sunSprite, sunOrbit}); //General Sun Node
-
-
-  
   auto shader = Shader::Make();
   shader->AttachVertexShader("./shaders/2d/vertex.glsl");
   shader->AttachFragmentShader("./shaders/2d/fragment.glsl");
   shader->Link();
+
+  // create objects
+  camera = Camera2D::Make(0,10,0,10);
+
+  //Moon setup
+  auto moonSpriteTex = Texture::Make("face", "images/noise.png");
+  auto moonTrf = Transform::Make();
+  moonTrf->Scale(0.2f, 0.2f, 1.0f);
+  auto moon = Node::Make(moonTrf, { moonSpriteTex },{ Disk::Make()}); //General and Sprite Node
+
+  //Earth Setup
+  auto earthSpriteTex = Texture::Make("face", "images/earth.jpg");
+  auto earthSpriteTrf = Transform::Make();
+  auto earthOrbitTrf = Transform::Make();
+  earthSpriteTrf->Scale(0.5f, 0.5f, 1.0f);
+
+  auto earthSprite = Node::Make(earthSpriteTrf, { earthSpriteTex }, { Disk::Make() }); //Earth Sprite Node
+  auto earthOrbit = Node::Make(earthOrbitTrf, { moon });
+  auto earth = Node::Make({earthSprite, earthOrbit}); //General Earth Node
+  
+  //Sun Setup
+  auto sunSpriteTex = Texture::Make("face", "images/Lebron.jpg");
+  auto sunTrf = Transform::Make();
+  auto sunOrbitTrf = Transform::Make();
+  sunTrf->Translate(5.0f,5.0f,1.0f);
+
+  auto sunSprite = Node::Make({ sunSpriteTex }, { Disk::Make() }); //Sprite Node
+  auto sunOrbit = Node::Make(sunOrbitTrf, {earth}); //Orbit Node
+
+  auto sun = Node::Make(sunTrf, {sunSprite, sunOrbit}); //General Sun Node
 
   // build scene
   auto root = Node::Make(shader, { sun });

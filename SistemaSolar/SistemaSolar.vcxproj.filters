@@ -19,6 +19,9 @@
     <Filter Include="Source Files\shaders\2d">
       <UniqueIdentifier>{cedbc9dd-3331-4463-a4da-9896d2259767}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\images">
+      <UniqueIdentifier>{ea6a6140-2d4a-4a96-b7bc-7d96b486410d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="camera2d.cpp">
@@ -172,5 +175,40 @@
     <None Include="shaders\2d\vertex.glsl">
       <Filter>Source Files\shaders\2d</Filter>
     </None>
+    <None Include="images\.DS_Store">
+      <Filter>Source Files\images</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="images\earth.jpg">
+      <Filter>Source Files\images</Filter>
+    </Image>
+    <Image Include="images\earth-normal.png">
+      <Filter>Source Files\images</Filter>
+    </Image>
+    <Image Include="images\lena_color_512.tif">
+      <Filter>Source Files\images</Filter>
+    </Image>
+    <Image Include="images\noise.png">
+      <Filter>Source Files\images</Filter>
+    </Image>
+    <Image Include="images\paper.jpg">
+      <Filter>Source Files\images</Filter>
+    </Image>
+    <Image Include="images\skybox.jpg">
+      <Filter>Source Files\images</Filter>
+    </Image>
+    <Image Include="images\skytest.png">
+      <Filter>Source Files\images</Filter>
+    </Image>
+    <Image Include="images\smile_face.jpg">
+      <Filter>Source Files\images</Filter>
+    </Image>
+    <Image Include="images\stopwatch.jpg">
+      <Filter>Source Files\images</Filter>
+    </Image>
+    <Image Include="images\Lebron.jpg">
+      <Filter>Source Files\images</Filter>
+    </Image>
   </ItemGroup>
 </Project>
