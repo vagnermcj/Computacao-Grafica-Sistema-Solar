@@ -55,6 +55,32 @@ public:
     }
 };
 
+class PlanetRotation;
+using PlanetRotationPtr = std::shared_ptr<PlanetRotation>;
+
+class PlanetRotation : public Engine
+{
+    TransformPtr m_trf;
+    float m_speed;
+
+protected:
+    PlanetRotation(TransformPtr trf, float speed)
+        : m_trf(trf), m_speed(speed)
+    {
+    }
+
+public:
+    static PlanetRotationPtr Make(TransformPtr trf, float speed)
+    {
+        return PlanetRotationPtr(new PlanetRotation(trf, speed));
+    }
+
+    virtual void Update(float dt)
+    {
+        m_trf->Rotate(m_speed * -dt, 0, 0, 1);
+    }
+};
+
 
 static void initialize (void)
 {
@@ -114,6 +140,7 @@ static void initialize (void)
   scene->AddEngine(OrbitTranslation::Make(earthOrbitTrf, 3.5f, 10.0f));
   scene->AddEngine(OrbitTranslation::Make(moonOrbitTrf, 0.8f, 20.0f));
   scene->AddEngine(OrbitTranslation::Make(mercuryOrbitTrf, 2.0f, 55.0f));
+  scene->AddEngine(PlanetRotation::Make(earthSpriteTrf, 100.0f));
 }
 
 static void display (GLFWwindow* win)
