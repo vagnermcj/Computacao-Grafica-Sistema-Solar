@@ -102,10 +102,10 @@
     <ClCompile Include="texdepth.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="glad.c">
+    <ClCompile Include="disk.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="disk.cpp">
+    <ClCompile Include="glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
