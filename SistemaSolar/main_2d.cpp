@@ -17,6 +17,7 @@
 #include "triangle.h"
 #include "disk.h"
 #include "texture.h"
+#include "quad.h"
 
 #include <iostream>
 
@@ -134,8 +135,16 @@ static void initialize (void)
 
   auto sun = Node::Make(sunTrf, {sunSprite, earthOrbit, mercuryOrbit}); //General Sun Node
 
+  //Space Setup
+  auto spaceSpriteTex = Texture::Make("face", "images/space.jpg");
+  auto spaceTrf = Transform::Make();
+  spaceTrf->Translate(-5.0f, 0.0f, 0.0f);
+  spaceTrf->Scale(20.0f, 10.0f, 1.0f);
+  auto spacePrite = Node::Make(spaceTrf, { spaceSpriteTex }, { Quad::Make() }); //Space Sprite Node
+  auto space = Node::Make( { sun, spacePrite } ); //Space Node
+
   // build scene
-  auto root = Node::Make(shader, { sun });
+  auto root = Node::Make(shader, { space });
   scene = Scene::Make(root);
   scene->AddEngine(OrbitTranslation::Make(earthOrbitTrf, 3.5f, 10.0f));
   scene->AddEngine(OrbitTranslation::Make(moonOrbitTrf, 0.8f, 20.0f));
@@ -187,7 +196,7 @@ int main ()
 
     glfwSetErrorCallback(error);
 
-    GLFWwindow* win = glfwCreateWindow(600, 400, "Window title", nullptr, nullptr);
+    GLFWwindow* win = glfwCreateWindow(1024, 600, "Window title", nullptr, nullptr);
     assert(win);
     glfwSetFramebufferSizeCallback(win, resize);  // resize callback
     glfwSetKeyCallback(win, keyboard);            // keyboard callback
