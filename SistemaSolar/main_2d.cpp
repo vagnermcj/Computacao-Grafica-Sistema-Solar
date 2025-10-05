@@ -72,37 +72,48 @@ static void initialize (void)
   camera = Camera2D::Make(0,10,0,10);
 
   //Moon setup
-  auto moonSpriteTex = Texture::Make("face", "images/noise.png");
+  auto moonSpriteTex = Texture::Make("face", "images/Moon.png");
   auto moonTrf = Transform::Make();
-  moonTrf->Scale(0.2f, 0.2f, 1.0f);
+  moonTrf->Scale(0.1f, 0.1f, 1.0f);
   auto moon = Node::Make(moonTrf, { moonSpriteTex },{ Disk::Make()}); //General and Sprite Node
 
   //Earth Setup
-  auto earthSpriteTex = Texture::Make("face", "images/earth.jpg");
+  auto earthSpriteTex = Texture::Make("face", "images/Earth.png");
   auto earthSpriteTrf = Transform::Make();
-  auto earthOrbitTrf = Transform::Make();
-  earthSpriteTrf->Scale(0.5f, 0.5f, 1.0f);
+  auto moonOrbitTrf = Transform::Make();
+  earthSpriteTrf->Scale(0.4f, 0.4f, 1.0f);
 
   auto earthSprite = Node::Make(earthSpriteTrf, { earthSpriteTex }, { Disk::Make() }); //Earth Sprite Node
-  auto earthOrbit = Node::Make(earthOrbitTrf, { moon });
-  auto earth = Node::Make({earthSprite, earthOrbit}); //General Earth Node
+  auto moonOrbit = Node::Make(moonOrbitTrf, { moon });
+  auto earth = Node::Make({earthSprite, moonOrbit}); //General Earth Node
+
+  //Mercury Setup
+  auto mercurySpriteTex = Texture::Make("face", "images/Mercury.png");
+  auto mercurySpriteTrf = Transform::Make();
+  mercurySpriteTrf->Scale(0.2f, 0.2f, 1.0f);
+  
+  auto mercurySprite = Node::Make(mercurySpriteTrf, { mercurySpriteTex }, { Disk::Make() }); //Mercury Sprite Node
+  auto mercury = Node::Make({mercurySprite}); //General Mercury Node
   
   //Sun Setup
-  auto sunSpriteTex = Texture::Make("face", "images/Lebron.jpg");
+  auto sunSpriteTex = Texture::Make("face", "images/Sun.png");
   auto sunTrf = Transform::Make();
-  auto sunOrbitTrf = Transform::Make();
+  auto earthOrbitTrf = Transform::Make();
+  auto mercuryOrbitTrf = Transform::Make();
   sunTrf->Translate(5.0f,5.0f,1.0f);
 
   auto sunSprite = Node::Make({ sunSpriteTex }, { Disk::Make() }); //Sprite Node
-  auto sunOrbit = Node::Make(sunOrbitTrf, {earth}); //Orbit Node
+  auto earthOrbit = Node::Make(earthOrbitTrf, {earth}); //Orbit Node
+  auto mercuryOrbit = Node::Make(mercuryOrbitTrf, {mercury}); //Orbit Node
 
-  auto sun = Node::Make(sunTrf, {sunSprite, sunOrbit}); //General Sun Node
+  auto sun = Node::Make(sunTrf, {sunSprite, earthOrbit, mercuryOrbit}); //General Sun Node
 
   // build scene
   auto root = Node::Make(shader, { sun });
   scene = Scene::Make(root);
-  scene->AddEngine(OrbitTranslation::Make(sunOrbitTrf, 3.0f, 10.0f));
-  scene->AddEngine(OrbitTranslation::Make(earthOrbitTrf, 1.0f, 20.0f));
+  scene->AddEngine(OrbitTranslation::Make(earthOrbitTrf, 3.5f, 10.0f));
+  scene->AddEngine(OrbitTranslation::Make(moonOrbitTrf, 0.8f, 20.0f));
+  scene->AddEngine(OrbitTranslation::Make(mercuryOrbitTrf, 2.0f, 55.0f));
 }
 
 static void display (GLFWwindow* win)
