@@ -80,12 +80,14 @@ static void initialize (void)
   //Earth Setup
   auto earthSpriteTex = Texture::Make("face", "images/earth.jpg");
   auto earthSpriteTrf = Transform::Make();
+  auto earthRotationTrf = Transform::Make();
   auto earthOrbitTrf = Transform::Make();
   earthSpriteTrf->Scale(0.5f, 0.5f, 1.0f);
 
   auto earthSprite = Node::Make(earthSpriteTrf, { earthSpriteTex }, { Disk::Make() }); //Earth Sprite Node
+  auto earthRotation = Node::Make(earthRotationTrf, { earthSprite }); //Earth Rotation Node
   auto earthOrbit = Node::Make(earthOrbitTrf, { moon });
-  auto earth = Node::Make({earthSprite, earthOrbit}); //General Earth Node
+  auto earth = Node::Make({earthRotation, earthOrbit}); //General Earth Node
   
   //Sun Setup
   auto sunSpriteTex = Texture::Make("face", "images/Lebron.jpg");
@@ -103,6 +105,7 @@ static void initialize (void)
   scene = Scene::Make(root);
   scene->AddEngine(OrbitTranslation::Make(sunOrbitTrf, 3.0f, 10.0f));
   scene->AddEngine(OrbitTranslation::Make(earthOrbitTrf, 1.0f, 20.0f));
+  scene->AddEngine(OrbitTranslation::Make(earthRotationTrf, 0.0f, 500.0f));
 }
 
 static void display (GLFWwindow* win)
