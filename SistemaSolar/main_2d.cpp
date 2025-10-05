@@ -72,13 +72,13 @@ static void initialize (void)
   camera = Camera2D::Make(0,10,0,10);
 
   //Moon setup
-  auto moonSpriteTex = Texture::Make("face", "images/noise.png");
+  auto moonSpriteTex = Texture::Make("face", "images/Moon.png");
   auto moonTrf = Transform::Make();
   moonTrf->Scale(0.2f, 0.2f, 1.0f);
   auto moon = Node::Make(moonTrf, { moonSpriteTex },{ Disk::Make()}); //General and Sprite Node
 
   //Earth Setup
-  auto earthSpriteTex = Texture::Make("face", "images/earth.jpg");
+  auto earthSpriteTex = Texture::Make("face", "images/Earth.png");
   auto earthSpriteTrf = Transform::Make();
   auto earthOrbitTrf = Transform::Make();
   earthSpriteTrf->Scale(0.5f, 0.5f, 1.0f);
@@ -88,7 +88,7 @@ static void initialize (void)
   auto earth = Node::Make({earthSprite, earthOrbit}); //General Earth Node
   
   //Sun Setup
-  auto sunSpriteTex = Texture::Make("face", "images/Lebron.jpg");
+  auto sunSpriteTex = Texture::Make("face", "images/Sun.png");
   auto sunTrf = Transform::Make();
   auto sunOrbitTrf = Transform::Make();
   sunTrf->Translate(5.0f,5.0f,1.0f);
