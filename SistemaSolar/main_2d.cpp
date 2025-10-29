@@ -24,63 +24,6 @@
 static ScenePtr scene;
 static CameraPtr camera;
 
-class OrbitTranslation;
-using OrbitTranslationPtr = std::shared_ptr<OrbitTranslation>;
-
-class OrbitTranslation : public Engine
-{
-    TransformPtr m_trf;
-    float m_radius;
-    float m_angle;
-    float m_speed;
-
-protected:
-    OrbitTranslation(TransformPtr trf, float radius, float speed)
-        : m_trf(trf), m_radius(radius), m_speed(speed), m_angle(0.0f)
-    {
-    }
-
-public:
-    static OrbitTranslationPtr Make(TransformPtr trf, float radius, float speed)
-    {
-        return OrbitTranslationPtr(new OrbitTranslation(trf, radius, speed));
-    }
-
-    virtual void Update(float dt)
-    {
-        m_angle += m_speed * -dt;
-
-        m_trf->LoadIdentity();
-        m_trf->Rotate(m_angle, 0, 0, 1);
-        m_trf->Translate(m_radius, 0.0f, 0.0f);
-    }
-};
-
-class PlanetRotation;
-using PlanetRotationPtr = std::shared_ptr<PlanetRotation>;
-
-class PlanetRotation : public Engine
-{
-    TransformPtr m_trf;
-    float m_speed;
-
-protected:
-    PlanetRotation(TransformPtr trf, float speed)
-        : m_trf(trf), m_speed(speed)
-    {
-    }
-
-public:
-    static PlanetRotationPtr Make(TransformPtr trf, float speed)
-    {
-        return PlanetRotationPtr(new PlanetRotation(trf, speed));
-    }
-
-    virtual void Update(float dt)
-    {
-        m_trf->Rotate(m_speed * -dt, 0, 0, 1);
-    }
-};
 
 
 static void initialize (void)
@@ -146,10 +89,6 @@ static void initialize (void)
   // build scene
   auto root = Node::Make(shader, { space });
   scene = Scene::Make(root);
-  scene->AddEngine(OrbitTranslation::Make(earthOrbitTrf, 3.5f, 10.0f));
-  scene->AddEngine(OrbitTranslation::Make(moonOrbitTrf, 0.8f, 20.0f));
-  scene->AddEngine(OrbitTranslation::Make(mercuryOrbitTrf, 2.0f, 55.0f));
-  scene->AddEngine(PlanetRotation::Make(earthSpriteTrf, 100.0f));
 }
 
 static void display (GLFWwindow* win)
@@ -183,6 +122,7 @@ static void update (float dt)
   scene->Update(dt);
 }
 
+/*
 int main ()
 {
     glfwInit();
@@ -224,4 +164,5 @@ int main ()
   glfwTerminate();
   return 0;
 }
+*/
 

@@ -19,7 +19,7 @@ LightPtr Light::Make (float x, float y, float z, float w, const std::string& spa
 Light::Light (float x, float y, float z, float w, const std::string& space)
 : m_space(space),
   m_amb{0.3f,0.3f,0.3f,1.0f},
-  m_dif{0.7f,0.7f,0.7f,1.0f},
+  m_dif{0.5f,0.5f,0.5f,1.0f},
   m_spe{1.0f,1.0f,1.0f,1.0f},
   m_pos{x,y,z,w},
   m_reference(nullptr)

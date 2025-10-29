@@ -22,6 +22,9 @@
     <Filter Include="Source Files\images">
       <UniqueIdentifier>{ea6a6140-2d4a-4a96-b7bc-7d96b486410d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\shaders\3d">
+      <UniqueIdentifier>{6a2023a9-d6b5-436b-9efd-6fa09de481b7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="camera2d.cpp">
@@ -111,6 +114,9 @@
     <ClCompile Include="disk.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="main_3d.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="appearance.h">
@@ -177,6 +183,18 @@
     </None>
     <None Include="images\.DS_Store">
       <Filter>Source Files\images</Filter>
+    </None>
+    <None Include="shaders\ilum_vert\fragment.glsl">
+      <Filter>Source Files\shaders\3d</Filter>
+    </None>
+    <None Include="shaders\ilum_vert\fragment_texture.glsl">
+      <Filter>Source Files\shaders\3d</Filter>
+    </None>
+    <None Include="shaders\ilum_vert\vertex.glsl">
+      <Filter>Source Files\shaders\3d</Filter>
+    </None>
+    <None Include="shaders\ilum_vert\vertex_texture.glsl">
+      <Filter>Source Files\shaders\3d</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

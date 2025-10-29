@@ -33,6 +33,7 @@
     <ClCompile Include="image.cpp" />
     <ClCompile Include="light.cpp" />
     <ClCompile Include="main_2d.cpp" />
+    <ClCompile Include="main_3d.cpp" />
     <ClCompile Include="material.cpp" />
     <ClCompile Include="mesh.cpp" />
     <ClCompile Include="node.cpp" />
@@ -73,6 +74,10 @@
     <None Include="images\.DS_Store" />
     <None Include="shaders\2d\fragment.glsl" />
     <None Include="shaders\2d\vertex.glsl" />
+    <None Include="shaders\ilum_vert\fragment.glsl" />
+    <None Include="shaders\ilum_vert\fragment_texture.glsl" />
+    <None Include="shaders\ilum_vert\vertex.glsl" />
+    <None Include="shaders\ilum_vert\vertex_texture.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="images\earth-normal.png" />

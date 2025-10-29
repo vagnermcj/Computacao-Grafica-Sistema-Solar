@@ -18,7 +18,7 @@ Material::Material (float r, float g, float b, float opacity)
 : m_amb(r,g,b,1.0f), 
   m_dif(r,g,b,1.0f), 
   m_spe(1.0f,1.0f,1.0f,1.0f), 
-  m_shi(32.0f),
+  m_shi(100.0f),
   m_opacity(opacity)
 {
 }
